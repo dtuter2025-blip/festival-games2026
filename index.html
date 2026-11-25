@@ -1095,9 +1095,7 @@ function finish() {
   setTimeout(() => { cancelAnimationFrame(raf); raf = 0; }, 900);
 }
 function restart() {
-  intro.style.display = '';
-  intro.classList.remove('done'); gate.classList.remove('hide'); cta.classList.remove('show');
-  state = 'gate'; if (!raf) loop();
+  location.href = 'index.html';
 }
 startBtn.addEventListener('click', begin);
 skipBtn.addEventListener('click', finish);
