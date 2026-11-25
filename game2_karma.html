@@ -32,8 +32,8 @@ body.playing #gear{display:block}
 <div id="sL" class="jc stick"><div></div></div>
 <div id="sR" class="jc stick"><div></div></div>
 <button id="sk" class="jc"></button>
-<button id="set1">⚙ 설정</button> <button onclick="location.href='index.html?lobby=1'" style="border-color:#00e5ff;color:#00e5ff">대문으로</button></div></div>
-<div id="set" class="ov"><h1>설정</h1><div>조작 방식</div><div><button id="mk">⌨ 키보드 + 마우스</button> <button id="mj">🕹 조이스틱 (터치)</button></div><div><button id="mt"></button> <button id="ma"></button></div><div id="hlp" style="max-width:420px;line-height:1.6;font-size:14px"></div><button id="tomenu">메인 메뉴</button> <button onclick="location.href='index.html?lobby=1'" style="border-color:#00e5ff;color:#00e5ff">대문으로</button></div></div>
+<div id="menu" class="ov" style="display:flex"><h1>KARMA</h1><div>하나의 던전에서 몰려오는 몬스터를 15분 동안 버티면 승리합니다. 5웨이브마다 보스가 나타납니다</div><div class="cards" id="cards"></div><div><button id="go">게임 시작</button> <button id="set1">⚙ 설정</button> <button onclick="location.href='index.html?lobby=1'" style="border-color:#00e5ff;color:#00e5ff">대문으로</button></div></div>
+<div id="set" class="ov"><h1>설정</h1><div>조작 방식</div><div><button id="mk">⌨ 키보드 + 마우스</button> <button id="mj">🕹 조이스틱 (터치)</button></div><div><button id="mt"></button> <button id="ma"></button></div><div id="hlp" style="max-width:420px;line-height:1.6;font-size:14px"></div><div><button id="cl">닫기</button> <button id="tomenu">메인 메뉴</button> <button onclick="location.href='index.html?lobby=1'" style="border-color:#00e5ff;color:#00e5ff">대문으로</button></div></div>
 <div id="tut" class="ov"><h1 id="tt"></h1><div class="tp" id="tb"></div><div id="tpg"></div><div><button id="tpv">이전</button> <button id="tn" class="on">다음</button></div><div><button id="tskip">건너뛰기</button> <button id="toff">다시 보지 않기</button></div></div>
 <div id="lv" class="ov"><h1>레벨 업!</h1><div id="lvs"></div><div class="cards" id="lvc"></div></div>
 <div id="over" class="ov"><h1 id="ot"></h1><div id="od"></div><button id="again">메인 메뉴로</button></div>
@@ -93,7 +93,7 @@ function openSet(){if(S=='play')S='pause';$('set').style.display='flex';refreshS
 function closeSet(){$('set').style.display='none';if(S=='pause')setS('play')}
 $('gear').onclick=openSet;$('set1').onclick=openSet;$('cl').onclick=closeSet;$('mk').onclick=()=>setMode('key');$('mj').onclick=()=>setMode('joy');
 $('tomenu').onclick=()=>{$('set').style.display='none';setS('menu')};$('again').onclick=()=>setS('menu');$('go').onclick=newGame;
-function end(w){setS(w?'win':'over');let b=0;try{b=+localStorage.getItem('best')||0;if(run.t>b)localStorage.setItem('best',''+(run.t|0))}catch(e){}$('ot').textContent=w?'승리! 15분을 버테냈습니다':'쓰러졌습니다';$('od').textContent=CH[P.i].n+' · 웨이브 '+wave+' · 생존 '+fmt(run.t)+' · 처치 '+run.kills+' · 최고 기록 '+fmt(Math.max(b,run.t))}
+function end(w){setS(w?'win':'over');let b=0;try{b=+localStorage.getItem('best')||0;if(run.t>b)localStorage.setItem('best',''+(run.t|0))}catch(e){}$('ot').textContent=w?'승리! 15분을 버텨냈습니다':'쓰러졌습니다';$('od').textContent=CH[P.i].n+' · 웨이브 '+wave+' · 생존 '+fmt(run.t)+' · 처치 '+run.kills+' · 최고 기록 '+fmt(Math.max(b,run.t))}
 function setMsg(s){msg=s;msgT=2.5}
 const ED=()=>1+(run.t>=300?1:0)+(run.t>=600?1:0);
 let autoAim=true;try{autoAim=localStorage.getItem('aa')!='0'}catch(e){}
